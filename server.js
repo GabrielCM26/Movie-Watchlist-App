@@ -72,7 +72,7 @@ app.post('/api/movies', async (req, res) => {
         const { title, year, genre, watched, rating } = req.body;
 
         if (!title || !genre || !year) {
-            return res.status(400).json({ error: 'Title, genre and year are required' });
+            return res.status(400).json({ error: 'Title, year and genre are required' });
         }
 
         const newMovie = new Movie({ title, year, genre, watched, rating });
@@ -88,7 +88,7 @@ app.post('/api/movies', async (req, res) => {
 app.put('/api/movies/:id', async (req, res) => {
     try {
         const { title, year, genre, watched, rating } = req.body;
-        const updatedMovie = Movie.findByIdAndUpdate(
+        const updatedMovie = await Movie.findByIdAndUpdate(
             req.params.id,
             { title, year, genre, watched, rating },
             { new: true }
@@ -115,9 +115,14 @@ app.delete('/api/movies/:id', async (req, res) => {
 });
 
 // Next.js page handling
-nextApp.prepare().then(() => {
-    app.get('*', (req, res) => handle(req, res));
+app.use((req, res) => {
+  return handle(req, res);
+});
 
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+const PORT = process.env.PORT || 3000;
+
+nextApp.prepare().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor Next.js + Express a correr em http://localhost:${PORT}`);
+  });
 });
