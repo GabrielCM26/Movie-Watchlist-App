@@ -116,13 +116,13 @@ app.delete('/api/movies/:id', async (req, res) => {
 
 // Next.js page handling
 app.use((req, res) => {
-  return handle(req, res);
+    return handle(req, res);
 });
 
 const PORT = process.env.PORT || 3000;
 
 nextApp.prepare().then(() => {
-  app.listen(PORT, () => {
-    console.log(`🚀 Servidor Next.js + Express a correr em http://localhost:${PORT}`);
-  });
+    app.listen(PORT, () => {
+        console.log(`🚀 Servidor Next.js + Express a correr em http://localhost:${PORT}`);
+    });
 });
