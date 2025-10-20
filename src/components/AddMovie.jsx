@@ -1,66 +1,71 @@
 import React, { useState } from 'react';
 
 export default function AddMovie({ onClose, onAdd }) {
-  const [title, setTitle] = useState('');
-  const [year, setYear] = useState('');
-  const [genre, setGenre] = useState('');
-  const [watched, setWatched] = useState(false);
-  const [rating, setRating] = useState('');
+    const [title, setTitle] = useState('');
+    const [year, setYear] = useState('');
+    const [genre, setGenre] = useState('');
+    const [watched, setWatched] = useState(false);
+    const [rating, setRating] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!title || !year || !genre) {
-      alert('Title, year and genre are required');
-      return;
-    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!title || !year || !genre) {
+            alert('Title, year and genre are required');
+            return;
+        }
 
-    const movie = {
-      title,
-      year: Number(year),
-      genre,
-      watched,
-      rating: rating ? Number(rating) : undefined,
+        const movie = {
+            title,
+            year: Number(year),
+            genre,
+            watched,
+            rating: rating ? Number(rating) : undefined,
+        };
+
+        onAdd(movie);
     };
 
-    onAdd(movie);
-  };
-
-  return (
-        <ul className="space-y-3">
-            {movies.map((movie) => (
-                <li key={movie._id} className="flex items-center justify-between gap-4 p-3 border rounded-md">
+    return (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+            <div className="bg-white p-4 rounded-lg w-full max-w-md">
+                <h2 className="text-xl font-semibold mb-3">Add movie</h2>
+                <form onSubmit={handleSubmit} className="space-y-3">
                     <div>
-                        <div className="flex items-baseline gap-3">
-                            <h3 className="font-semibold">{movie.title}</h3>
-                            <span className="text-sm text-gray-500">({movie.year})</span>
-                        </div>
-                        <div className="text-sm text-gray-500">{movie.genre}</div>
-                        <div className="text-sm mt-1">
-                            Rating: <strong>{movie.rating ?? '-'}</strong>
-                            {' • '}
-                            {movie.watched ? (
-                                <span className="text-green-600">Watched</span>
-                            ) : (
-                                <span className="text-orange-600">Not watched</span>
-                            )}
-                        </div>
+                        <label className="block text-sm">Title</label>
+                        <input className="w-full border rounded px-2 py-1" value={title} onChange={(e) => setTitle(e.target.value)} />
                     </div>
+
+
+                    <div>
+                        <label className="block text-sm">Year</label>
+                        <input className="w-full border rounded px-2 py-1" value={year} onChange={(e) => setYear(e.target.value)} />
+                    </div>
+
+
+                    <div>
+                        <label className="block text-sm">Genre</label>
+                        <input className="w-full border rounded px-2 py-1" value={genre} onChange={(e) => setGenre(e.target.value)} />
+                    </div>
+
+
                     <div className="flex items-center gap-2">
-                        <button
-                            className="px-3 py-1 border rounded text-sm"
-                            onClick={() => onEdit(movie)}
-                        >
-                            Edit
-                        </button>
-                        <button
-                            className="px-3 py-1 bg-red-500 text-white rounded text-sm"
-                            onClick={() => handleDelete(movie._id)}
-                        >
-                            Delete
-                        </button>
+                        <input id="watched" type="checkbox" checked={watched} onChange={(e) => setWatched(e.target.checked)} />
+                        <label htmlFor="watched">Watched</label>
                     </div>
-                </li>
-            ))}
-        </ul>
+
+
+                    <div>
+                        <label className="block text-sm">Rating (1-10)</label>
+                        <input className="w-full border rounded px-2 py-1" value={rating} onChange={(e) => setRating(e.target.value)} type="number" min="1" max="10" />
+                    </div>
+
+
+                    <div className="flex justify-end gap-2 mt-2">
+                        <button type="button" className="px-3 py-1 border rounded" onClick={onClose}>Cancel</button>
+                        <button type="submit" className="px-3 py-1 bg-indigo-600 text-white rounded">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     );
 }
