@@ -30,7 +30,6 @@ export default function EditMovie({ movie, onClose, onSave }) {
       genre,
       watched,
       rating: rating ? Number(rating) : undefined,
-      image,
     };
 
     onSave(movie._id, updated);
@@ -69,8 +68,8 @@ export default function EditMovie({ movie, onClose, onSave }) {
           </div>
 
           <div className="flex justify-end gap-2 mt-2">
-            <button type="button" className="px-3 py-1 border rounded" onClick={onClose}>Cancel</button>
-            <button type="submit" className="px-3 py-1 bg-indigo-600 text-white rounded">Save</button>
+            <button type="button" className="px-3 py-1 border rounded cursor-pointer" onClick={onClose}>Cancel</button>
+            <button type="submit" className="px-3 py-1 bg-indigo-600 text-white rounded cursor-pointer">Save</button>
           </div>
         </form>
       </div>

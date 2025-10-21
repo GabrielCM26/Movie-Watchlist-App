@@ -103,34 +103,32 @@ export default function Home() {
     setRatingOrder(order);
   };
 
-  return (
-    <div
-      className="min-h-screen p-4 sm:p-8 bg-cover bg-center"
-      style={{ backgroundImage: 'url(/background.jpg)' }}  
-    >
-      <Head>
-        <title>Movie Watchlist</title>
-      </Head>
+return (
+  <div
+    className="min-h-screen p-4 sm:p-8 bg-cover bg-center"
+    style={{ backgroundImage: 'url(/background.jpg)' }}
+  >
+    <Head>
+      <title>Movie Watchlist</title>
+    </Head>
 
-      <div className="max-w-3xl mx-auto bg-white opacity-95 p-6 rounded-lg shadow-lg">
-        <header className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold">🎬 Movie Watchlist🎬</h1>
-          <div className="space-x-2">
-            <button
-              className="px-3 py-1 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700"
-              onClick={() => setShowAdd(true)}
-            >
-              + Add Movie
-            </button>
-          </div>
-        </header>
+    <header className="fixed top-0 left-0 right-0 z-20 bg-zinc-800  backdrop-blur-md shadow-md px-6 py-4 flex justify-between items-center">
+      <h1 className="text-2xl text-white sm:text-3xl font-bold">🎬Movie Watchlist</h1>
+      <button
+        className="px-3 py-1 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700"
+        onClick={() => setShowAdd(true)}
+      >
+        + Add Movie
+      </button>
+    </header>
 
-        <nav className="flex gap-2 mb-6 flex-wrap">
-          <NavButton active={view === 'all'} onClick={() => setView('all')}>All</NavButton>
-          <NavButton active={view === 'watched'} onClick={() => setView('watched')}>Watched</NavButton>
-          <NavButton active={view === 'unwatched'} onClick={() => setView('unwatched')}>Not Watched</NavButton>
-          <NavButton active={view === 'rating'} onClick={() => setView('rating')}>Order by Rating</NavButton>
-        </nav>
+    <div className="max-w-3xl mx-auto bg-white opacity-95 p-6 rounded-lg shadow-lg mt-28">
+      <nav className="flex gap-2 mb-6 flex-wrap">
+        <NavButton active={view === 'all'} onClick={() => setView('all')}>All</NavButton>
+        <NavButton active={view === 'watched'} onClick={() => setView('watched')}>Watched</NavButton>
+        <NavButton active={view === 'unwatched'} onClick={() => setView('unwatched')}>Not Watched</NavButton>
+        <NavButton active={view === 'rating'} onClick={() => setView('rating')}>Order by Rating</NavButton>
+      </nav>
 
         <main>
           {loading ? (
