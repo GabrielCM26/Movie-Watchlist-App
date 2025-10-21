@@ -19,7 +19,6 @@ const Movie = require('./models/Movie');
 // ===== ENDPOINTS DA API =====
 
 // GET /api/movies - movies list(with filters)
-// GET 1 - Get list with every movie
 app.get('/api/movies', async (req, res) => {
     try {
         const movies = await Movie.find().exec();
@@ -30,7 +29,7 @@ app.get('/api/movies', async (req, res) => {
     }
 });
 
-// GET 2 - Watched movies
+// GET 2 /api/movies/watched - Watched movies
 app.get('/api/movies/watched', async (req, res) => {
     try {
         const movies = await Movie.find({ watched: true }).exec();
@@ -41,7 +40,7 @@ app.get('/api/movies/watched', async (req, res) => {
     }
 });
 
-// GET 3 - Unwatched movies
+// GET 3 /api/movies/unwatched - Unwatched movies
 app.get('/api/movies/unwatched', async (req, res) => {
     try {
         const movies = await Movie.find({ watched: false }).exec();
@@ -52,7 +51,7 @@ app.get('/api/movies/unwatched', async (req, res) => {
     }
 });
 
-// GET 4 - Order by rating
+// GET 4 /api/movies/sorted/rating - Order by rating
 app.get('/api/movies/sorted/rating', async (req, res) => {
     try {
         const { order } = req.query;
@@ -119,7 +118,7 @@ app.use((req, res) => {
     return handle(req, res);
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 nextApp.prepare().then(() => {
     app.listen(PORT, () => {

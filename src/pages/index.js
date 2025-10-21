@@ -115,7 +115,7 @@ return (
     <header className="fixed top-0 left-0 right-0 z-20 bg-zinc-800  backdrop-blur-md shadow-md px-6 py-4 flex justify-between items-center">
       <h1 className="text-2xl text-white sm:text-3xl font-bold">🎬Movie Watchlist</h1>
       <button
-        className="px-3 py-1 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700"
+        className="px-3 py-1 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 cursor-pointer"
         onClick={() => setShowAdd(true)}
       >
         + Add Movie

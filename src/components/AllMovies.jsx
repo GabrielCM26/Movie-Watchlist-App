@@ -40,13 +40,13 @@ export default function AllMovies({ movies, onEdit, onDeleted }) {
                     </div>
                     <div className="flex items-center gap-2">
                         <button
-                            className="px-3 py-1 border rounded text-sm"
+                            className="px-3 py-1 border rounded text-sm cursor-pointer"
                             onClick={() => onEdit(movie)}
                         >
                             Edit
                         </button>
                         <button
-                            className="px-3 py-1 bg-red-500 text-white rounded text-sm"
+                            className="px-3 py-1 bg-red-500 text-white rounded text-sm cursor-pointer"
                             onClick={() => handleDelete(movie._id)}
                         >
                             Delete
