@@ -122,7 +122,7 @@ return (
       </button>
     </header>
 
-    <div className="max-w-3xl mx-auto bg-white opacity-95 p-6 rounded-lg shadow-lg mt-28">
+    <div className="max-w-3xl mx-auto bg-white opacity-97 p-6 rounded-lg shadow-lg mt-28">
       <nav className="flex gap-2 mb-6 flex-wrap">
         <NavButton active={view === 'all'} onClick={() => setView('all')}>All</NavButton>
         <NavButton active={view === 'watched'} onClick={() => setView('watched')}>Watched</NavButton>
