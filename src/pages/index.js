@@ -34,12 +34,10 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Modals
   const [showAdd, setShowAdd] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [editingMovie, setEditingMovie] = useState(null);
 
-  // rating order
   const [ratingOrder, setRatingOrder] = useState('desc');
 
   async function fetchMovies() {
@@ -106,12 +104,15 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 sm:p-8">
+    <div
+      className="min-h-screen p-4 sm:p-8 bg-cover bg-center"
+      style={{ backgroundImage: 'url(/background.jpg)' }}  
+    >
       <Head>
         <title>Movie Watchlist</title>
       </Head>
 
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto bg-white opacity-95 p-6 rounded-lg shadow-lg">
         <header className="flex items-center justify-between mb-6">
           <h1 className="text-2xl sm:text-3xl font-bold">🎬 Movie Watchlist🎬</h1>
           <div className="space-x-2">
@@ -131,7 +132,7 @@ export default function Home() {
           <NavButton active={view === 'rating'} onClick={() => setView('rating')}>Order by Rating</NavButton>
         </nav>
 
-        <main className="bg-white p-4 rounded-lg shadow-sm">
+        <main>
           {loading ? (
             <div className="text-center py-8">Loading...</div>
           ) : error ? (
@@ -159,7 +160,9 @@ export default function Home() {
           )}
         </main>
 
-        <footer className="text-center text-sm text-gray-400 mt-4">Tip: use the buttons above to filter and order movies.</footer>
+        <footer className="text-center text-sm text-gray-400 mt-4">
+          Tip: use the buttons above to filter and order movies.
+        </footer>
       </div>
 
       {showAdd && <AddMovie onClose={() => setShowAdd(false)} onAdd={handleAdd} />}
